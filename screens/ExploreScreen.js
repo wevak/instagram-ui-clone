@@ -1,34 +1,41 @@
 import * as React from 'react'
-import { FlatList, StyleSheet, Text, View } from 'react-native'
-import { Button } from 'react-native-paper'
+import { FlatList, StyleSheet, View, Image } from 'react-native'
+import { Button, Text } from 'react-native-paper'
 
 export default function ExploreScreen() {
+  const [items, setItems] = React.useState({})
+  React.useEffect(() => {
+    setItems(Array.apply(null, Array(60)).map((v, i) => {
+      return { id: i, src: 'http://placehold.it/200x200?text=' + (i + 1) };
+    }))
+  }, [])
+
   return (
-    <View style={styles.background}>
-      <FlatList 
-        data={[
-          {key: 'First'},
-          {key: 'Second'},
-          {key: 'Third'},
-          {key: 'Fourth'},
-          {key: 'Fifth'},
-        ]}
-        renderItem={item => <Text /* style={styles.item} */>{item.key}</Text>}
+    <View style={styles.container}>
+      <FlatList
+        data={items}
+        renderItem={({ item }) => (
+          <View style={{ flex: 1, flexDirection: 'column', margin: 1 }}>
+            <Image style={styles.imageThumbnail} source={{ uri: item.src }} />
+          </View>
+        )}
+        //Setting the number of column
+        numColumns={3}
+        keyExtractor={(item, index) => index.toString()}
       />
-      <Button>Button</Button>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
-    // color: 'cyan'
-  },
-  background: {
+  container: {
     flex: 1,
-    backgroundColor: 'steelblue'
-  }
+    justifyContent: 'center',
+    paddingTop: 30
+  },
+  imageThumbnail: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 100
+  },
 })

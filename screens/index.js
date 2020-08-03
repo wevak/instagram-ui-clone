@@ -16,5 +16,5 @@
 export { default as ExploreScreen } from './ExploreScreen'
 export { default as HomeScreen } from './HomeScreen'
 export { default as FavouritesScreen } from './FavouritesScreen'
-export { default as PostsScreen } from './PostsScreen'
+export { default as CameraScreen } from './CameraScreen'
 export { default as ProfileScreen } from './ProfileScreen'

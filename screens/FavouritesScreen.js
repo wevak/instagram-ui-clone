@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Title, ActivityIndicator, Appbar, List, Avatar } from 'react-native-paper'
+import { Title, ActivityIndicator, Appbar, List, Avatar, Colors } from 'react-native-paper'
 import { View, FlatList, Text, StyleSheet } from 'react-native'
 
 export default function FavouriteScreen() {
@@ -32,7 +32,7 @@ export default function FavouriteScreen() {
         } />
       </List.Section>
       <View style={{flex: 1, padding: 24}}>
-        {isLoading ? <ActivityIndicator /> : (
+        {isLoading ? <ActivityIndicator color={Colors.red500} /> : (
           <FlatList
             data={data}
             keyExtractor={({id}, index) => id}
